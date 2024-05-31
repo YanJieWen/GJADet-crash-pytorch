@@ -30,7 +30,6 @@ Central south university
 
 We have supplied 7 baseline backbone: [Convnext](https://openaccess.thecvf.com/content/CVPR2022/html/Liu_A_ConvNet_for_the_2020s_CVPR_2022_paper.html), [DLA](https://openaccess.thecvf.com/content_cvpr_2018/html/Yu_Deep_Layer_Aggregation_CVPR_2018_paper.html), [Resnet](https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html),[Swin-Transformer](https://openaccess.thecvf.com/content/ICCV2021/html/Liu_Swin_Transformer_Hierarchical_Vision_Transformer_Using_Shifted_Windows_ICCV_2021_paper),[Darknet](https://arxiv.org/abs/1804.02767), [CSPDarknet](https://github.com/ultralytics/ultralytics), [VGG](https://arxiv.org/abs/1409.1556).  
 You can follow the following Tips:
-```
 Donwload the pretrained backbone weight from [offical](https://github.com/open-mmlab/mmdetection) or [Google](https://drive.google.com/drive/folders/1BI9Iker-qJabpx6B3PaTYAw4pCT8YQJE?usp=drive_link)
 Change the [train.py](train.py)
 - the super parameter are shown in `line 254`-`line 276`
@@ -41,7 +40,6 @@ Change the [train.py](train.py)
 -- the neck in `272`
 Download the datasets into the `datasets` file and transform the data into [COCO](https://cocodataset.org/)-like   
 python train.py
-```
 
 
 
