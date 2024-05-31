@@ -24,10 +24,7 @@ Central south university
 
 
 - ## Train
-- <h2>  
-The overall framework of GJADet
-
-</h2>
+**The overall of framework**
 
 ![image](pc/framework.png)
 
