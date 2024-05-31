@@ -26,7 +26,7 @@ Central south university
 - ## Train
 **The overall of framework**
 
-![image](pc/framework.png)
+![image](framework.jpg)
 
 
 
