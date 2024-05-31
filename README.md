@@ -38,8 +38,10 @@ Change the [train.py](train.py)
 - the iou_loss in `line 144` for CIou, DIoU and Iou
 - the backbone in `line 271`
 - Download the datasets into the `datasets` file and transform the data into [COCO](https://cocodataset.org/)-like
-- python train.py
+- python [train.py](train.py)
 
+
+- ## Train
 
 
 
