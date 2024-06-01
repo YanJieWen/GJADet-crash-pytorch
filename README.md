@@ -41,7 +41,14 @@ Change the [train.py](train.py)
 - python [train.py](train.py)
 
 
-- ## Train
+- ## Test
+- Run [eval.py](eval.py), change the `line 102` to `line 112` for detection results. You can get:
+```
+model.npy save the detection results
+record_mAP.txt mAP@0.5, mAP(@.5:.95) per class based on COCO
+```
+- If you get the `model.npy` file, you can run the [visual_anlysis.py](anlysis/visual_anlysis.py) to visualization of detections, which show the TP (Red RECT), FP (BLUE RECT), and FN(GREE RECT).
+![image](framework.jpg)
 
 
 
