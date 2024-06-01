@@ -16,7 +16,7 @@ Central south university
 - [Abstract](#Abstract)
 - [Train](#Train)
 - [Test](#Test)
-- [Contributing](#contributing)
+- [Contributing](#Contributing)
 - [License](#license)
 
 - ## Abstract
@@ -48,7 +48,19 @@ model.npy save the detection results
 record_mAP.txt mAP@0.5, mAP(@.5:.95) per class based on COCO
 ```
 - If you get the `model.npy` file, you can run the [visual_anlysis.py](analysis/visual_anlysis.py) to visualization of detections, which show the TP (Red RECT), FP (BLUE RECT), and FN(GREE RECT).
-![image](framework.jpg)
+![image](001558.jpg)
+- If you get the `model.npy` file, you can transform the `npy`-like file into the `COCO` json. Then run the [get_pr.py](get_pr.py), you can output the `pr_curve.xlsx` for 101 points (Recall 0:0.01:1).
+- Run [demo.py](demo.py), you can get the visualization of demo and the responses of detection based on [Grad-cam](https://github.com/jacobgil/pytorch-grad-cam), the explaination of deep learning tools.
+
+
+- ## Contributing
+
+[mmdetection](https://github.com/open-mmlab/mmdetection)  
+[YOLO family](https://github.com/ultralytics/ultralytics)
+
+- ## License
+
+[MIT](LICENSE) © YanjieWen
 
 
 
