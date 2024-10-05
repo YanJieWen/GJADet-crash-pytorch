@@ -17,13 +17,13 @@ from functools import partial
 
 class GradientJointRepresentationLoss(nn.Module):
     def __init__(self,num_classes=80,
-                 gamma=12,mu=0.8,alpha=4.0,sigma=2.0):
+                 gamma=12,mu=0.8,alpha=4.0,beta=2.0):
         super(GradientJointRepresentationLoss,self).__init__()
         self.num_classes = num_classes
         self.gamma = gamma
         self.mu = mu
         self.alpha = alpha
-        self.sigma = sigma
+        self.beta = beta
         self.register_buffer('pos_grad', torch.zeros(self.num_classes, device='cuda:0'))  # c
         self.register_buffer('neg_grad', torch.zeros(self.num_classes, device='cuda:0'))  # c
         self.register_buffer('pos_neg', torch.ones(self.num_classes, device='cuda:0') * 100)  # c
