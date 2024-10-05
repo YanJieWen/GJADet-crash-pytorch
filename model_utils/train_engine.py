@@ -49,8 +49,8 @@ def install_detector(backbone_name,fpn_name,nc,verbose=True):
             cfg_dict = {'cfg':dark_yolo_path,'verbose':verbose,'pretrained_root':'./pretrained'}
             model = dynamica_install(arch_libs, f'{backbone_name}', cfg_dict)
         elif backbone_name == 'CSPDarknet':
-            csp_yolo_path = './cfg/yolov8.yaml'
-            cfg_dict = {'cfg': csp_yolo_path, 'verbose': verbose, 'pretrained_root': './pretrained'}
+            cm_dict = {'cfg_file':'./cfg/yolov8.yaml','nc':nc,'type':'m'}
+            cfg_dict = {'cfg': cm_dict, 'verbose': verbose, 'pretrained_root': './pretrained'}
             model = dynamica_install(arch_libs, f'{backbone_name}', cfg_dict)
     return model
 
