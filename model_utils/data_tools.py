@@ -127,7 +127,6 @@ def load_mosaic(self,index,transforms):
         labels = copy.deepcopy(x) #dict
         img,_,(h,w) = load_image(self,index)
         img,labels['boxes'] = transforms[i](img,labels['boxes'].numpy())
-        print(img.shape)
         if i == 0:
             img4 = np.full((s * 2, s * 2, img.shape[2]), 114, dtype=np.uint8)
             x1a, y1a, x2a, y2a = max(xc - w, 0), max(yc - h, 0), xc, yc
