@@ -248,78 +248,78 @@ class COCOdatasets(Dataset):
 
 
 
-if __name__ == '__main__':
-    import matplotlib.pyplot as plt
-    import PIL.ImageDraw as Imagedraw
-    from PIL import ImageColor,ImageFont
-    from torchvision import transforms
+# if __name__ == '__main__':
+#     import matplotlib.pyplot as plt
+#     import PIL.ImageDraw as Imagedraw
+#     from PIL import ImageColor,ImageFont
+#     from torchvision import transforms
 
-    STANDARD_COLORS = [
-                'AliceBlue', 'Chartreuse', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque',
-                'BlanchedAlmond', 'BlueViolet', 'BurlyWood', 'CadetBlue', 'AntiqueWhite',
-                'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan',
-                'DarkCyan', 'DarkGoldenRod', 'DarkGrey', 'DarkKhaki', 'DarkOrange',
-                'DarkOrchid', 'DarkSalmon', 'DarkSeaGreen', 'DarkTurquoise', 'DarkViolet',
-                'DeepPink', 'DeepSkyBlue', 'DodgerBlue', 'FireBrick', 'FloralWhite',
-                'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod',
-                'Salmon', 'Tan', 'HoneyDew', 'HotPink', 'IndianRed', 'Ivory', 'Khaki',
-                'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue',
-                'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey',
-                'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue',
-                'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime',
-                'LimeGreen', 'Linen', 'Magenta', 'MediumAquaMarine', 'MediumOrchid',
-                'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen',
-                'MediumTurquoise', 'MediumVioletRed', 'MintCream', 'MistyRose', 'Moccasin',
-                'NavajoWhite', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed',
-                'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed',
-                'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple',
-                'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Green', 'SandyBrown',
-                'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue',
-                'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'GreenYellow',
-                'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White',
-                'WhiteSmoke', 'Yellow', 'YellowGreen'
-            ]
-    root = '../datasets/POCOCO/'
-    # dataset = 'val'
-    dataset = 'val'
-    batch_size = 8
-    img_size = 512
-    model_type = 'yolo'
-    rect = False
-    data = COCOdatasets(root,dataset,batch_size,img_size,model_type,rect=rect, augment=True)
-    coco = data.coco
-    # ids = list(sorted(coco.imgs.keys()))
-    # print(data.coco.cats)
-    dataloader = torch.utils.data.DataLoader(data,batch_size=batch_size,num_workers=0,shuffle=rect,pin_memory=True,collate_fn=data.collate_fn_yolo)
-    samples = next(iter(dataloader))
-    # print(data.batch_shapes[0])
-    for im_id in range(batch_size):
-        # im_id = 5
-        keep = samples[1][:,0]==im_id
-        img = samples[0][im_id]
-        gt = samples[1][keep]
-        # print(gt)
-        # print(samples[2][im_id],samples[3][im_id],samples[4][im_id])
-        h, w = img.shape[1:]
-        coco_classes = dict([(v['id'],v['name']) for k,v in data.coco.cats.items()])
-        # print(gt)
-        colors = [ImageColor.getrgb(STANDARD_COLORS[cls % len(STANDARD_COLORS)]) for cls in
-                  np.asarray(gt[:, 1].numpy(), dtype=int)]
-        img = transforms.ToPILImage()(img)
-        draw = Imagedraw.Draw(img)
-        scores = torch.ones(gt.shape[0])
-        font = ImageFont.truetype('arial.ttf', 12)
-        # print(gt[:,1])
-        for box, cls, color, score in zip(gt[:, 2:], gt[:, 1], colors, scores):
-            norm_cx, norm_cy, norm_w, norm_h = box
-            left, top = (norm_cx - norm_w / 2) * w, (norm_cy - norm_h / 2) * h
-            right, bottom = (norm_cx + norm_w / 2) * w, (norm_cy + norm_h / 2) * h
-            draw.line([(left, top), (left, bottom), (right, bottom),
-                                   (right, top), (left, top)],width=1,fill=color)
-            draw.text((left,top), coco_classes.get(int(cls)), color,font=font)
-        plt.axis('off')
-        plt.imshow(img)
-        plt.show()
+#     STANDARD_COLORS = [
+#                 'AliceBlue', 'Chartreuse', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque',
+#                 'BlanchedAlmond', 'BlueViolet', 'BurlyWood', 'CadetBlue', 'AntiqueWhite',
+#                 'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan',
+#                 'DarkCyan', 'DarkGoldenRod', 'DarkGrey', 'DarkKhaki', 'DarkOrange',
+#                 'DarkOrchid', 'DarkSalmon', 'DarkSeaGreen', 'DarkTurquoise', 'DarkViolet',
+#                 'DeepPink', 'DeepSkyBlue', 'DodgerBlue', 'FireBrick', 'FloralWhite',
+#                 'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod',
+#                 'Salmon', 'Tan', 'HoneyDew', 'HotPink', 'IndianRed', 'Ivory', 'Khaki',
+#                 'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue',
+#                 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey',
+#                 'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue',
+#                 'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime',
+#                 'LimeGreen', 'Linen', 'Magenta', 'MediumAquaMarine', 'MediumOrchid',
+#                 'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen',
+#                 'MediumTurquoise', 'MediumVioletRed', 'MintCream', 'MistyRose', 'Moccasin',
+#                 'NavajoWhite', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed',
+#                 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed',
+#                 'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple',
+#                 'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Green', 'SandyBrown',
+#                 'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue',
+#                 'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'GreenYellow',
+#                 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White',
+#                 'WhiteSmoke', 'Yellow', 'YellowGreen'
+#             ]
+#     root = '../datasets/POCOCO/'
+#     # dataset = 'val'
+#     dataset = 'val'
+#     batch_size = 8
+#     img_size = 512
+#     model_type = 'yolo'
+#     rect = False
+#     data = COCOdatasets(root,dataset,batch_size,img_size,model_type,rect=rect, augment=True)
+#     coco = data.coco
+#     # ids = list(sorted(coco.imgs.keys()))
+#     # print(data.coco.cats)
+#     dataloader = torch.utils.data.DataLoader(data,batch_size=batch_size,num_workers=0,shuffle=rect,pin_memory=True,collate_fn=data.collate_fn_yolo)
+#     samples = next(iter(dataloader))
+#     # print(data.batch_shapes[0])
+#     for im_id in range(batch_size):
+#         # im_id = 5
+#         keep = samples[1][:,0]==im_id
+#         img = samples[0][im_id]
+#         gt = samples[1][keep]
+#         # print(gt)
+#         # print(samples[2][im_id],samples[3][im_id],samples[4][im_id])
+#         h, w = img.shape[1:]
+#         coco_classes = dict([(v['id'],v['name']) for k,v in data.coco.cats.items()])
+#         # print(gt)
+#         colors = [ImageColor.getrgb(STANDARD_COLORS[cls % len(STANDARD_COLORS)]) for cls in
+#                   np.asarray(gt[:, 1].numpy(), dtype=int)]
+#         img = transforms.ToPILImage()(img)
+#         draw = Imagedraw.Draw(img)
+#         scores = torch.ones(gt.shape[0])
+#         font = ImageFont.truetype('arial.ttf', 12)
+#         # print(gt[:,1])
+#         for box, cls, color, score in zip(gt[:, 2:], gt[:, 1], colors, scores):
+#             norm_cx, norm_cy, norm_w, norm_h = box
+#             left, top = (norm_cx - norm_w / 2) * w, (norm_cy - norm_h / 2) * h
+#             right, bottom = (norm_cx + norm_w / 2) * w, (norm_cy + norm_h / 2) * h
+#             draw.line([(left, top), (left, bottom), (right, bottom),
+#                                    (right, top), (left, top)],width=1,fill=color)
+#             draw.text((left,top), coco_classes.get(int(cls)), color,font=font)
+#         plt.axis('off')
+#         plt.imshow(img)
+#         plt.show()
 
 #
 #     ann_json = '../datasets/POCOCO/annotations/test.json'
